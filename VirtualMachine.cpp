@@ -35,8 +35,3 @@ void VirtualMachine::Set(unsigned int Addr, unsigned int Value)
 		Memory.Set(Addr, Value);
 	}
 }
-
-VirtualMachine::~VirtualMachine()
-{
-}
-

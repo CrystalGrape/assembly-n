@@ -10,6 +10,7 @@ class MemoryManager
 {
 public:
 	MemoryManager();
+	~MemoryManager();
 	MemoryManager(unsigned int MemorySize);
 	unsigned int Get(unsigned int Addr);
 	void Set(unsigned int Addr, unsigned int Value);

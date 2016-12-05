@@ -7,7 +7,6 @@ class VirtualMachine
 {
 public:
 	VirtualMachine(int MaxMemorySize);
-	~VirtualMachine();
 	unsigned int Get(unsigned int Addr);
 	void Set(unsigned int Addr, unsigned int Value);
 private:

@@ -4,6 +4,12 @@ MemoryManager::MemoryManager()
 {
 }
 
+MemoryManager::~MemoryManager()
+{
+	delete[] Memory;
+	delete[] MemoryInfo;
+}
+
 MemoryManager::MemoryManager(unsigned int MemorySize)
 {
 	this->MemorySize = MemorySize;
