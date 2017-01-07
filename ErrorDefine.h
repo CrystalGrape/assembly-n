@@ -3,8 +3,12 @@
 #include <sstream>
 enum ExpectionCode
 {
+	ModuleNotExist,
+	CodeError,
 	OutOfMemory,
 	ReadOnly,
+	UnexpectionCode,
+	ArgsError,
 };
 class VMExpection
 {

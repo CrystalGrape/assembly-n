@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -142,14 +142,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CodeManager.h" />
     <ClInclude Include="ErrorDefine.h" />
     <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="VirtualMachine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CodeManager.cpp" />
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="VirtualMachine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="demo\main.asn" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

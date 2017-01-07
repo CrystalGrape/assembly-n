@@ -24,6 +24,9 @@
     <ClInclude Include="ErrorDefine.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CodeManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VirtualMachine.cpp">
@@ -35,5 +38,13 @@
     <ClCompile Include="MemoryManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CodeManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="demo\main.asn">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>
