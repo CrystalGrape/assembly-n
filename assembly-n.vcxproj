@@ -152,6 +152,7 @@
     <ClCompile Include="CodeManager.cpp" />
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="MemoryManager.cpp" />
+    <ClCompile Include="Operators.cpp" />
     <ClCompile Include="VirtualMachine.cpp" />
   </ItemGroup>
   <ItemGroup>

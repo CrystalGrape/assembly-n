@@ -44,6 +44,9 @@
     <ClCompile Include="CodeManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="demo\main.asn">
