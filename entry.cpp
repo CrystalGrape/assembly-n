@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> 
 #include "VirtualMachine.h"
 using namespace std;
 
@@ -8,8 +8,10 @@ int main()
 	{
 		std::vector<std::string> OriginalCode;
 		VirtualMachine vm(1024);
+		/*vm.ImportExe("demo.n");*/
 		vm.LoadModule(OriginalCode, "demo.main");
 		vm.Compile(OriginalCode);
+		
 		vm.Run();
 	}
 	catch (VMExpection e)

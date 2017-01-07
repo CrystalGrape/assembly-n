@@ -19,6 +19,7 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	Operators[OpCode::CJMP] = &VirtualMachine::do_cjmp;
 	Operators[OpCode::BJMP] = &VirtualMachine::do_bjmp;
 	Operators[OpCode::RET] = &VirtualMachine::do_ret;
+	Operators[OpCode::END] = &VirtualMachine::do_end;
 }
 
 VirtualMachine::~VirtualMachine()
@@ -56,6 +57,9 @@ void VirtualMachine::Set(unsigned int Addr, unsigned int Value)
 
 void VirtualMachine::LoadModule(std::vector<std::string> &OriginalCode, string moduleName)
 {
+#ifdef RECORDTIME
+	RecordTime time("load");
+#endif
 	string modulePath = moduleName;
 	string envPath;
 	std::string::size_type startpos = 0;
@@ -95,6 +99,9 @@ void VirtualMachine::LoadModule(std::vector<std::string> &OriginalCode, string m
 
 void VirtualMachine::Compile(std::vector<std::string> OriginalCode)
 {
+#ifdef RECORDTIME
+	RecordTime time("compile");
+#endif
 	OriginalCode = Codes.PreCompile(OriginalCode);
 	for (int i = 0; i < OriginalCode.size(); i++)
 	{
@@ -109,6 +116,9 @@ void VirtualMachine::ExportExe(string targetName)
 
 void VirtualMachine::ImportExe(std::string fromName)
 {
+#ifdef RECORDTIME
+	RecordTime time("import");
+#endif
 	Codes.ImportExe(fromName);
 }
 
@@ -134,6 +144,9 @@ void VirtualMachine::Run()
 ///操作码函数
 void VirtualMachine::do_move(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("mov");
+#endif
 	if (args[0].Type != OpDataType::Register)
 		throw VMExpection(ArgsError, "mov指令第一个参数必须是寄存器");
 	unsigned int opdata;
@@ -150,6 +163,9 @@ void VirtualMachine::do_move(OpData args[3])
 }
 void VirtualMachine::do_str(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("str");
+#endif
 	if (args[0].Type != OpDataType::Register)
 		throw VMExpection(ArgsError, "str指令第一个参数必须是寄存器");
 	unsigned int memoryAddr;
@@ -167,6 +183,9 @@ void VirtualMachine::do_str(OpData args[3])
 }
 void VirtualMachine::do_ldr(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("ldr");
+#endif
 	if (args[0].Type != OpDataType::Register)
 		throw VMExpection(ArgsError, "ldr指令第一个参数必须是寄存器");
 	unsigned int memoryAddr;
@@ -184,6 +203,9 @@ void VirtualMachine::do_ldr(OpData args[3])
 }
 void VirtualMachine::do_push(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("push");
+#endif
 	if (args[0].Type != OpDataType::Register)
 		throw VMExpection(ArgsError, "只能对寄存器进行压栈操作");
 	unsigned int opdata = Get(args[0].Data);
@@ -191,12 +213,18 @@ void VirtualMachine::do_push(OpData args[3])
 }
 void VirtualMachine::do_pop(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("pop");
+#endif
 	if (args[0].Type != OpDataType::Register)
 		throw VMExpection(ArgsError, "只能对寄存器进行退栈操作");
 	Set(args[0].Data, Get(--sp));
 }
 void VirtualMachine::do_jmp(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("jmp");
+#endif
 	unsigned int pcAddr;
 	switch (args[0].Type)
 	{
@@ -213,6 +241,9 @@ void VirtualMachine::do_jmp(OpData args[3])
 
 void VirtualMachine::do_cjmp(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("cjmp");
+#endif
 	if ((cpsr & 0x00000001) == 0)
 		return;
 	unsigned int pcAddr;
@@ -232,6 +263,9 @@ void VirtualMachine::do_cjmp(OpData args[3])
 
 void VirtualMachine::do_bjmp(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("bjmp");
+#endif
 	lr = pc;
 	unsigned int pcAddr;
 	switch (args[0].Type)
@@ -249,5 +283,16 @@ void VirtualMachine::do_bjmp(OpData args[3])
 
 void VirtualMachine::do_ret(OpData args[3])
 {
+#ifdef RECORDTIME
+	RecordTime time("ret");
+#endif
 	pc = lr;
+}
+
+void VirtualMachine::do_end(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("end");
+#endif
+	throw VMExpection(Exit);
 }

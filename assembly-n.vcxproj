@@ -145,6 +145,7 @@
     <ClInclude Include="CodeManager.h" />
     <ClInclude Include="ErrorDefine.h" />
     <ClInclude Include="MemoryManager.h" />
+    <ClInclude Include="ReocrdTime.h" />
     <ClInclude Include="VirtualMachine.h" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include <sstream>
 enum ExpectionCode
 {
+	Exit,
 	ModuleNotExist,
 	CodeError,
 	OutOfMemory,
@@ -28,9 +29,14 @@ public:
 
 	friend std::ostream &operator<<(std::ostream &os, const VMExpection& e)
 	{
+		if (e.ErrorCode == ExpectionCode::Exit)
+		{
+			os << "程序正常退出";
+			return os;
+		}
 		os << "错误代码:" << e.ErrorCode << std::endl;
 		if (e.ErrorMsg.length() != 0)
-			os << "错误信息:" << e.ErrorMsg.data() << std::endl;
+			os << "错误信息:" << e.ErrorMsg.data();
 		return os;
 	}
 private:
