@@ -1,10 +1,10 @@
+jmp main
+import lib.math
 section main:
-	mov r0,21
-	mov r1,21
-	gte r0,r1
-	cjmp success
-	mov r2,1
-	end
-section success:
-	mov r2,2
+	mov r0,1
+	mov r1,2
+	push r0
+	push r1
+	bjmp add
+	pop r0
 	end

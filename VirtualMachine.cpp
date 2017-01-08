@@ -110,7 +110,7 @@ void VirtualMachine::Compile(std::vector<std::string> OriginalCode)
 	RecordTime time("compile");
 #endif
 	OriginalCode = Codes.PreCompile(OriginalCode);
-	for (int i = 0; i < OriginalCode.size(); i++)
+	for (int i = 0; i < (int)OriginalCode.size(); i++)
 	{
 		Codes.Add(Codes.ParseData(OriginalCode[i]));
 	}

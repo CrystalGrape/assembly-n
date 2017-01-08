@@ -72,9 +72,9 @@ string& CodeManager::Trim(string &s)
 
 bool CodeManager::Equals(std::string first, std::string next, int len)
 {
-	if (len >= first.size())
+	if (len >= (int)first.size())
 		len = (int)first.size();
-	if (len >= next.size())
+	if (len >= (int)next.size())
 		len = (int)next.size();
 	for (int i = 0; i < len; i++)
 	{
@@ -88,7 +88,7 @@ std::vector<std::string> CodeManager::PreCompile(std::vector<std::string> Codes)
 {
 	vector<std::string> destCodes;
 	int pc = 0;
-	for (int i = 0; i < Codes.size(); i++)
+	for (int i = 0; i < (int)Codes.size(); i++)
 	{
 		Trim(Codes[i]);
 
@@ -110,7 +110,7 @@ OperateLine CodeManager::ParseData(std::string line)
 	std::string OpCode;
 	std::string Arg[3];
 	int index = 0;
-	for (int i = 0; i < line.size(); i++)
+	for (int i = 0; i < (int)line.size(); i++)
 	{
 		if (index == 0 && line.data()[i] == ' ')
 		{
@@ -186,7 +186,7 @@ void CodeManager::ExportExe(string targetName)
 {
 	ofstream targetStream(targetName, std::ios::binary);
 
-	for (int i = 0; i < CodeSection.size(); i++)
+	for (int i = 0; i < (int)CodeSection.size(); i++)
 	{
 		targetStream.write((char *)&CodeSection[i], sizeof(OperateLine));
 	}
