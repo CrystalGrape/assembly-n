@@ -15,6 +15,9 @@ public:
 	void ExportExe(std::string targetName);
 	void ImportExe(std::string fromName);
 	void Run();
+	void pushData(Int32 OpData);
+	Int32 popData();
+	unsigned int *GetPhysicalAddr(unsigned int Addr);
 	~VirtualMachine();
 private:
 	///²Ù×÷Âëº¯Êý
@@ -35,6 +38,9 @@ private:
 	void do_gte(OpData args[3]);
 	void do_lt(OpData args[3]);
 	void do_lte(OpData args[3]);
+	void do_entry(OpData args[3]);
+	void do_call(OpData args[3]);
+	void do_exit(OpData args[3]);
 private:
 	//0x00000000-0x56000000
 	MemoryManager *Memory;

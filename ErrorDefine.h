@@ -10,6 +10,8 @@ enum ExpectionCode
 	ReadOnly,
 	UnexpectionCode,
 	ArgsError,
+	EntryExternalError,
+	CallExternalError,
 };
 class VMExpection
 {

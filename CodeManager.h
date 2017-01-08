@@ -23,6 +23,9 @@ enum OpCode
 	GTE,		//大于等于
 	LT,			//小于
 	LTE,		//小于等于
+	ENTRY,		//进入动态库
+	CALL,		//调用函数
+	EXIT,		//退出动态库
 };
 
 //操作数据类型

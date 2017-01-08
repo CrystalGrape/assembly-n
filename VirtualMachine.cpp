@@ -1,6 +1,7 @@
 #include "VirtualMachine.h"
 #include <iostream>
 #include <fstream>
+#include "ExternalCall.h"
 using namespace std;
 
 VirtualMachine::VirtualMachine(int MaxMemorySize)
@@ -27,6 +28,10 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	Operators[OpCode::GTE] = &VirtualMachine::do_gte;
 	Operators[OpCode::LT] = &VirtualMachine::do_lt;
 	Operators[OpCode::LTE] = &VirtualMachine::do_lte;
+	Operators[OpCode::ENTRY] = &VirtualMachine::do_entry;
+	Operators[OpCode::CALL] = &VirtualMachine::do_call;
+	Operators[OpCode::EXIT] = &VirtualMachine::do_exit;
+	ExternalCall::GetInstance()->SetRunTime(this);
 }
 
 VirtualMachine::~VirtualMachine()
@@ -146,4 +151,17 @@ void VirtualMachine::Run()
 			break;
 		}
 	}
+}
+
+void VirtualMachine::pushData(Int32 OpData)
+{
+	Set(sp++, OpData);
+}
+Int32 VirtualMachine::popData()
+{
+	return Get(--sp);
+}
+unsigned int *VirtualMachine::GetPhysicalAddr(unsigned int Addr)
+{
+	return Memory->GetPhysicalAddr(Addr);
 }

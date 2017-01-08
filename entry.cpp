@@ -7,7 +7,7 @@ int main()
 	try
 	{
 		std::vector<std::string> OriginalCode;
-		VirtualMachine vm(1024);
+		VirtualMachine vm(4096);
 		/*vm.ImportExe("demo.n");*/
 		vm.LoadModule(OriginalCode, "demo.main");
 		vm.Compile(OriginalCode);

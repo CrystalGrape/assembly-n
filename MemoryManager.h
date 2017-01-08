@@ -14,6 +14,7 @@ public:
 	MemoryManager(unsigned int MemorySize);
 	unsigned int Get(unsigned int Addr);
 	void Set(unsigned int Addr, unsigned int Value);
+	unsigned int *GetPhysicalAddr(unsigned int Addr);
 private:
 	unsigned int *Memory;
 	MemoryAttribute *MemoryInfo;

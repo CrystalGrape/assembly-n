@@ -36,3 +36,8 @@ void MemoryManager::Set(unsigned int Addr, unsigned int Value)
 	*(Memory + Addr) = Value;
 }
 
+unsigned int *MemoryManager::GetPhysicalAddr(unsigned int Addr)
+{
+	return (Memory + Addr);
+}
+

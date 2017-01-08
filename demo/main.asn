@@ -1,10 +1,12 @@
 jmp main
 import lib.math
+import lib.echo
 section main:
-	mov r0,1
-	mov r1,2
+	mov r0,1819043176
+	str r0,1001
+	mov r0,111
+	str r0,1002
+	mov r0,1001
 	push r0
-	push r1
-	bjmp add
-	pop r0
+	bjmp echo
 	end

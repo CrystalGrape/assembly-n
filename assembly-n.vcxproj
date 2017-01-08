@@ -29,7 +29,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="CodeManager.h" />
     <ClInclude Include="ErrorDefine.h" />
+    <ClInclude Include="ExternalCall.h" />
     <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="ReocrdTime.h" />
     <ClInclude Include="VirtualMachine.h" />
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="CodeManager.cpp" />
     <ClCompile Include="entry.cpp" />
+    <ClCompile Include="ExternalCall.cpp" />
     <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="Operators.cpp" />
     <ClCompile Include="VirtualMachine.cpp" />

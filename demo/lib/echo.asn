@@ -1,0 +1,17 @@
+section echo:
+	mov r0,1651067971
+	str r0,100
+	mov r0,1819042862
+	str r0,101
+	mov r0,0
+	str r0,102
+	mov r0,100
+	entry r0
+	mov r0,1869112165
+	str r0,103
+	mov r0,0
+	str r0,104
+	mov r0,103
+	call r0
+	exit
+	ret

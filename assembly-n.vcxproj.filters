@@ -30,6 +30,9 @@
     <ClInclude Include="ReocrdTime.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ExternalCall.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VirtualMachine.cpp">
@@ -45,6 +48,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Operators.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternalCall.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

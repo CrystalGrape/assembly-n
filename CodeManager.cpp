@@ -22,6 +22,9 @@ CodeManager::CodeManager()
 	MapCode["gte"] = OpCode::GTE;
 	MapCode["lt"] = OpCode::LT;
 	MapCode["lte"] = OpCode::LTE;
+	MapCode["entry"] = OpCode::ENTRY;
+	MapCode["call"] = OpCode::CALL;
+	MapCode["exit"] = OpCode::EXIT;
 
 	MapRegister["r0"]	=	0x56000000;
 	MapRegister["r1"]	=	0x56000001;
