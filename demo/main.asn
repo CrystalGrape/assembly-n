@@ -1,0 +1,10 @@
+section main:
+	mov r0,21
+	mov r1,21
+	gte r0,r1
+	cjmp success
+	mov r2,1
+	end
+section success:
+	mov r2,2
+	end
