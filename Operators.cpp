@@ -19,6 +19,7 @@ void VirtualMachine::do_move(OpData args[3])
 	}
 	Set(args[0].Data, opdata);
 }
+
 void VirtualMachine::do_str(OpData args[3])
 {
 #ifdef RECORDTIME
@@ -39,6 +40,7 @@ void VirtualMachine::do_str(OpData args[3])
 	}
 	Set(memoryAddr, Get(args[0].Data));
 }
+
 void VirtualMachine::do_ldr(OpData args[3])
 {
 #ifdef RECORDTIME
@@ -59,6 +61,7 @@ void VirtualMachine::do_ldr(OpData args[3])
 	}
 	Set(args[0].Data, Get(memoryAddr));
 }
+
 void VirtualMachine::do_push(OpData args[3])
 {
 #ifdef RECORDTIME
@@ -69,6 +72,7 @@ void VirtualMachine::do_push(OpData args[3])
 	unsigned int opdata = Get(args[0].Data);
 	Set(sp++, opdata);
 }
+
 void VirtualMachine::do_pop(OpData args[3])
 {
 #ifdef RECORDTIME
@@ -78,6 +82,7 @@ void VirtualMachine::do_pop(OpData args[3])
 		throw VMExpection(ArgsError, "只能对寄存器进行退栈操作");
 	Set(args[0].Data, Get(--sp));
 }
+
 void VirtualMachine::do_jmp(OpData args[3])
 {
 #ifdef RECORDTIME
@@ -153,4 +158,126 @@ void VirtualMachine::do_end(OpData args[3])
 	RecordTime time("end");
 #endif
 	throw VMExpection(Exit);
+}
+
+void VirtualMachine::do_add(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("add");
+#endif
+	if (args[0].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "add指令第一个参数必须是寄存器");
+	if (args[1].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "add指令第二个参数必须是寄存器");
+	if (args[2].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "add指令第三个参数必须是寄存器");
+
+	unsigned int opdata1 = Get(args[1].Data);
+	unsigned int opdata2 = Get(args[2].Data);
+	Set(args[0].Data, opdata1 + opdata2);
+}
+void VirtualMachine::do_sub(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("sub");
+#endif
+	if (args[0].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "sub指令第一个参数必须是寄存器");
+	if (args[1].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "sub指令第二个参数必须是寄存器");
+	if (args[2].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "sub指令第三个参数必须是寄存器");
+
+	unsigned int opdata1 = Get(args[1].Data);
+	unsigned int opdata2 = Get(args[2].Data);
+	Set(args[0].Data, opdata1 - opdata2);
+}
+void VirtualMachine::do_mul(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("mul");
+#endif
+	if (args[0].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "mul指令第一个参数必须是寄存器");
+	if (args[1].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "mul指令第二个参数必须是寄存器");
+	if (args[2].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "mul指令第三个参数必须是寄存器");
+
+	unsigned int opdata1 = Get(args[1].Data);
+	unsigned int opdata2 = Get(args[2].Data);
+	Set(args[0].Data, opdata1 * opdata2);
+}
+
+void VirtualMachine::do_gt(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("gt");
+#endif
+	if (args[0].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "gt指令第一个参数必须是寄存器");
+	if (args[1].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "gt指令第二个参数必须是寄存器");
+	unsigned int opdata1 = Get(args[0].Data);
+	unsigned int opdata2 = Get(args[1].Data);
+	if (opdata1 > opdata2){
+		cpsr |= 0x00000001;
+	}
+	else{
+		cpsr &= 0xfffffffe;
+	}
+}
+void VirtualMachine::do_gte(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("gte");
+#endif
+	if (args[0].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "gte指令第一个参数必须是寄存器");
+	if (args[1].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "gte指令第二个参数必须是寄存器");
+	unsigned int opdata1 = Get(args[0].Data);
+	unsigned int opdata2 = Get(args[1].Data);
+	if (opdata1 >= opdata2){
+		cpsr |= 0x00000001;
+	}
+	else{
+		cpsr &= 0xfffffffe;
+	}
+}
+void VirtualMachine::do_lt(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("lt");
+#endif
+	if (args[0].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "lt指令第一个参数必须是寄存器");
+	if (args[1].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "lt指令第二个参数必须是寄存器");
+	unsigned int opdata1 = Get(args[0].Data);
+	unsigned int opdata2 = Get(args[1].Data);
+	if (opdata1 < opdata2){
+		cpsr |= 0x00000001;
+	}
+	else{
+		cpsr &= 0xfffffffe;
+	}
+}
+void VirtualMachine::do_lte(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("lte");
+#endif
+	if (args[0].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "lte指令第一个参数必须是寄存器");
+	if (args[1].Type != OpDataType::Register)
+		throw VMExpection(ArgsError, "lte指令第二个参数必须是寄存器");
+	unsigned int opdata1 = Get(args[0].Data);
+	unsigned int opdata2 = Get(args[1].Data);
+	if (opdata1 <= opdata2){
+		cpsr |= 0x00000001;
+	}
+	else{
+		cpsr &= 0xfffffffe;
+	}
 }

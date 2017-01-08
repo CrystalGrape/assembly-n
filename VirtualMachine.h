@@ -28,6 +28,13 @@ private:
 	void do_bjmp(OpData args[3]);
 	void do_ret(OpData args[3]);
 	void do_end(OpData args[3]);
+	void do_add(OpData args[3]);
+	void do_sub(OpData args[3]);
+	void do_mul(OpData args[3]);
+	void do_gt(OpData args[3]);
+	void do_gte(OpData args[3]);
+	void do_lt(OpData args[3]);
+	void do_lte(OpData args[3]);
 private:
 	//0x00000000-0x56000000
 	MemoryManager *Memory;

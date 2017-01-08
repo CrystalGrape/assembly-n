@@ -20,6 +20,13 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	Operators[OpCode::BJMP] = &VirtualMachine::do_bjmp;
 	Operators[OpCode::RET] = &VirtualMachine::do_ret;
 	Operators[OpCode::END] = &VirtualMachine::do_end;
+	Operators[OpCode::ADD] = &VirtualMachine::do_add;
+	Operators[OpCode::SUB] = &VirtualMachine::do_sub;
+	Operators[OpCode::MUL] = &VirtualMachine::do_mul;
+	Operators[OpCode::GT] = &VirtualMachine::do_gt;
+	Operators[OpCode::GTE] = &VirtualMachine::do_gte;
+	Operators[OpCode::LT] = &VirtualMachine::do_lt;
+	Operators[OpCode::LTE] = &VirtualMachine::do_lte;
 }
 
 VirtualMachine::~VirtualMachine()
