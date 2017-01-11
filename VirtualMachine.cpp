@@ -31,6 +31,8 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	Operators[OpCode::ENTRY] = &VirtualMachine::do_entry;
 	Operators[OpCode::CALL] = &VirtualMachine::do_call;
 	Operators[OpCode::EXIT] = &VirtualMachine::do_exit;
+	Operators[OpCode::STRB] = &VirtualMachine::do_strb;
+	Operators[OpCode::LDRB] = &VirtualMachine::do_ldrb;
 	ExternalCall::GetInstance()->SetRunTime(this);
 }
 

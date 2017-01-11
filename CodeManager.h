@@ -26,6 +26,8 @@ enum OpCode
 	ENTRY,		//进入动态库
 	CALL,		//调用函数
 	EXIT,		//退出动态库
+	STRB,		//存储1byte数据到内存
+	LDRB,		//加载1byte的数据到寄存器
 };
 
 //操作数据类型

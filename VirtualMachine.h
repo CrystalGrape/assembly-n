@@ -41,6 +41,8 @@ private:
 	void do_entry(OpData args[3]);
 	void do_call(OpData args[3]);
 	void do_exit(OpData args[3]);
+	void do_strb(OpData args[3]);
+	void do_ldrb(OpData args[3]);
 private:
 	//0x00000000-0x56000000
 	MemoryManager *Memory;

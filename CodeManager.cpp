@@ -25,6 +25,8 @@ CodeManager::CodeManager()
 	MapCode["entry"] = OpCode::ENTRY;
 	MapCode["call"] = OpCode::CALL;
 	MapCode["exit"] = OpCode::EXIT;
+	MapCode["strb"] = OpCode::STRB;
+	MapCode["ldrb"] = OpCode::LDRB;
 
 	MapRegister["r0"]	=	0x56000000;
 	MapRegister["r1"]	=	0x56000001;

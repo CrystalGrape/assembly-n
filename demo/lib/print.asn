@@ -1,0 +1,35 @@
+section print:
+	mov r0,67
+	strb r0,#100,0
+	mov r0,76
+	strb r0,#100,1
+	mov r0,105
+	strb r0,#100,2
+	mov r0,98
+	strb r0,#100,3
+	mov r0,46
+	strb r0,#101,0
+	mov r0,100
+	strb r0,#101,1
+	mov r0,108
+	strb r0,#101,2
+	mov r0,108
+	strb r0,#101,3
+	mov r0,0
+	str r0,#102
+	mov r0,100
+	entry r0
+	mov r0,101
+	strb r0,#103,0
+	mov r0,99
+	strb r0,#103,1
+	mov r0,104
+	strb r0,#103,2
+	mov r0,111
+	strb r0,#103,3
+	mov r0,0
+	str r0,104
+	mov r0,103
+	call r0
+	exit
+	ret
