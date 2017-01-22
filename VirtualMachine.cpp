@@ -78,7 +78,10 @@ void VirtualMachine::LoadModule(std::vector<std::string> &OriginalCode, string m
 	string envPath;
 	std::string::size_type startpos = 0;
 	int envPathPos = (int)modulePath.find_last_of('.');
-	envPath = moduleName.substr(0, moduleName.size() - envPathPos);
+	if (envPathPos == -1)
+		envPath = "";
+	else
+		envPath = moduleName.substr(0, moduleName.size() - envPathPos);
 	while (startpos != std::string::npos)
 	{
 		startpos = modulePath.find('.');
