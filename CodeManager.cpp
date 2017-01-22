@@ -104,6 +104,11 @@ std::vector<std::string> CodeManager::PreCompile(std::vector<std::string> Codes)
 			SectionMap[SectionName] = pc;
 			continue;
 		}
+
+		if (Equals(Codes[i], ";", (int)strlen(";")))
+		{
+			continue;
+		}
 		destCodes.push_back(Codes[i]);
 		pc = (int)destCodes.size();
 	}

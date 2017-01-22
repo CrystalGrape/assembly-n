@@ -3,11 +3,13 @@ import lib.math
 import lib.echo
 import lib.print
 section main:
+	;将Hello写入内存 
 	mov r0,1819043176
 	str r0,1001
 	mov r0,111
 	str r0,1002
 	mov r0,1001
 	push r0
+	;调用print函数
 	bjmp print
 	end
