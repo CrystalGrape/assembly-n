@@ -1,4 +1,9 @@
 #include <stdio.h>
+#if WINDOWS
+	#define ASNExport __declspec(dllexport)
+#elif LINUX
+	#define ASNExport extern "C"
+#endif
 
 typedef struct
 {
@@ -7,7 +12,7 @@ typedef struct
 	void *(*GetPhysicalAddr)(unsigned int);
 }RunTime;
 
-__declspec(dllexport) void echo(RunTime *asnRunTime)
+ASNExport void echo(RunTime *asnRunTime)
 {
 	unsigned int Addr = asnRunTime->pop();
 	char *data = (char *)asnRunTime->GetPhysicalAddr(Addr);

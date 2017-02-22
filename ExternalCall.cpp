@@ -27,18 +27,32 @@ void ExternalCall::SetRunTime(VirtualMachine *v)
 
 void ExternalCall::EntrySection(std::string dllName)
 {
+#if WINDOWS
 	hDllLib = LoadLibrary(dllName.data());
+#elif LINUX
+	hDllLib = dlopen(path, RTLD_LAZY);
+#endif
 	if (!hDllLib)
 		throw VMExpection(ExpectionCode::EntryExternalError);
 }
 
 void ExternalCall::CallFunction(std::string funcName)
 {
+#if WINDOWS
 	FARPROC fpFun = GetProcAddress(hDllLib, funcName.data());
 	((AssemblyNFunc)fpFun)(this->runTime);
+#elif LINUX
+	AssemblyNFunc fpFun = (AssemblyNFunc)dlsym(hDllLib, funcName.data());
+	fpFun(this->runTime);
+#endif
+	
 }
 
 void ExternalCall::ExitSection()
 {
+#if WINDOWS
 	FreeLibrary(hDllLib);
+#elif LINUX
+	dlclose(hDllLib);
+#endif
 }

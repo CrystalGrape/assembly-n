@@ -1,5 +1,10 @@
 #pragma once
-#include <windows.h>
+
+#if WINDOWS
+	#include <windows.h>
+#elif LINUX
+	#include <dlfcn.h>
+#endif
 #include <iostream>
 #include "VirtualMachine.h"
 #include "ErrorDefine.h"
@@ -25,7 +30,11 @@ public:
 	void CallFunction(std::string funcName);
 	void ExitSection();
 private:
+#if WINDOWS
 	HMODULE hDllLib;
+#elif LINUX
+	void *hDllLib;
+#endif
 	RunTime *runTime;
 	ExternalCall(){ runTime = NULL; };
 	typedef void(*AssemblyNFunc)(RunTime *);
