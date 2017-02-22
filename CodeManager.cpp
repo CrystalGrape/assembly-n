@@ -194,7 +194,7 @@ OperateLine CodeManager::Get(unsigned int Addr)
 
 void CodeManager::ExportExe(string targetName)
 {
-	ofstream targetStream(targetName, std::ios::binary);
+	ofstream targetStream(targetName.data(), std::ios::binary);
 
 	for (int i = 0; i < (int)CodeSection.size(); i++)
 	{
@@ -203,7 +203,7 @@ void CodeManager::ExportExe(string targetName)
 }
 void CodeManager::ImportExe(std::string fromName)
 {
-	ifstream targetStream(fromName, std::ios::binary);
+	ifstream targetStream(fromName.data(), std::ios::binary);
 
 	while (!targetStream.eof())
 	{

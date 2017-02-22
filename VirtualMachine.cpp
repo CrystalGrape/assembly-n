@@ -93,7 +93,7 @@ void VirtualMachine::LoadModule(std::vector<std::string> &OriginalCode, string m
 
 	modulePath += ".asn";
 
-	ifstream srcfile(modulePath);
+	ifstream srcfile(modulePath.data());
 	if (!srcfile.is_open()){
 		throw VMExpection(EC_ModuleNotExist, moduleName);
 	}
