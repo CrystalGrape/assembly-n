@@ -57,7 +57,7 @@ class CodeManager
 {
 public:
 	CodeManager();
-	static std::string& CodeManager::Trim(std::string &s);
+	static std::string& Trim(std::string &s);
 	static bool Equals(std::string first, std::string next, int len);
 	std::vector<std::string> PreCompile(std::vector<std::string> Codes);
 	OperateLine ParseData(std::string line);
