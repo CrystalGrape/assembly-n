@@ -1,18 +1,19 @@
 #pragma once
 #include <iostream>
 #include <sstream>
-typedef enum 
+enum ExpectionCode
 {
-	Exit = 0,
-	ModuleNotExist,
-	CodeError,
-	OutOfMemory,
-	ReadOnly,
-	UnexpectionCode,
-	ArgsError,
-	EntryExternalError,
-	CallExternalError,
-}ExpectionCode;
+	EC_Exit = 0,
+	EC_ModuleNotExist,
+	EC_CodeError,
+	EC_OutOfMemory,
+	EC_ReadOnly,
+	EC_UnexpectionCode,
+	EC_ArgsError,
+	EC_EntryExternalError,
+	EC_CallExternalError,
+};
+
 class VMExpection
 {
 public:
@@ -31,7 +32,7 @@ public:
 
 	friend std::ostream &operator<<(std::ostream &os, const VMExpection& e)
 	{
-		if (e.ErrorCode == ExpectionCode::Exit)
+		if (e.ErrorCode == EC_Exit)
 		{
 			os << "程序正常退出";
 			return os;

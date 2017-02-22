@@ -33,7 +33,7 @@ void ExternalCall::EntrySection(std::string dllName)
 	hDllLib = dlopen(path, RTLD_LAZY);
 #endif
 	if (!hDllLib)
-		throw VMExpection(ExpectionCode::EntryExternalError);
+		throw VMExpection(EC_EntryExternalError);
 }
 
 void ExternalCall::CallFunction(std::string funcName)

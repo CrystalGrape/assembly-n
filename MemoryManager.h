@@ -2,8 +2,8 @@
 #include "ErrorDefine.h"
 enum MemoryAttribute
 {
-	READONLY,
-	READWRITE
+	MA_READONLY,
+	MA_READWRITE
 };
 
 class MemoryManager

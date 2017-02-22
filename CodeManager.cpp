@@ -5,28 +5,28 @@ using namespace std;
 
 CodeManager::CodeManager()
 {
-	MapCode["mov"] = OpCode::MOV;
-	MapCode["ldr"] = OpCode::LDR;
-	MapCode["str"] = OpCode::STR;
-	MapCode["push"] = OpCode::PUSH;
-	MapCode["pop"] = OpCode::POP;
-	MapCode["jmp"] = OpCode::JMP;
-	MapCode["cjmp"] = OpCode::CJMP;
-	MapCode["bjmp"] = OpCode::BJMP;
-	MapCode["ret"] = OpCode::RET;
-	MapCode["end"] = OpCode::END;
-	MapCode["add"] = OpCode::ADD;
-	MapCode["sub"] = OpCode::SUB;
-	MapCode["mul"] = OpCode::MUL;
-	MapCode["gt"] = OpCode::GT;
-	MapCode["gte"] = OpCode::GTE;
-	MapCode["lt"] = OpCode::LT;
-	MapCode["lte"] = OpCode::LTE;
-	MapCode["entry"] = OpCode::ENTRY;
-	MapCode["call"] = OpCode::CALL;
-	MapCode["exit"] = OpCode::EXIT;
-	MapCode["strb"] = OpCode::STRB;
-	MapCode["ldrb"] = OpCode::LDRB;
+	MapCode["mov"] = OC_MOV;
+	MapCode["ldr"] = OC_LDR;
+	MapCode["str"] = OC_STR;
+	MapCode["push"] = OC_PUSH;
+	MapCode["pop"] = OC_POP;
+	MapCode["jmp"] = OC_JMP;
+	MapCode["cjmp"] = OC_CJMP;
+	MapCode["bjmp"] = OC_BJMP;
+	MapCode["ret"] = OC_RET;
+	MapCode["end"] = OC_END;
+	MapCode["add"] = OC_ADD;
+	MapCode["sub"] = OC_SUB;
+	MapCode["mul"] = OC_MUL;
+	MapCode["gt"] = OC_GT;
+	MapCode["gte"] = OC_GTE;
+	MapCode["lt"] = OC_LT;
+	MapCode["lte"] = OC_LTE;
+	MapCode["entry"] = OC_ENTRY;
+	MapCode["call"] = OC_CALL;
+	MapCode["exit"] = OC_EXIT;
+	MapCode["strb"] = OC_STRB;
+	MapCode["ldrb"] = OC_LDRB;
 
 	MapRegister["r0"]	=	0x56000000;
 	MapRegister["r1"]	=	0x56000001;
@@ -148,7 +148,7 @@ OperateLine CodeManager::ParseData(std::string line)
 			Arg[2].push_back(line.data()[i]);
 			break;
 		default:
-			throw VMExpection(ExpectionCode::CodeError, line + "错误");
+			throw VMExpection(EC_CodeError, line + "错误");
 		}
 	}
 	OperateLine CodeLine;
@@ -156,23 +156,23 @@ OperateLine CodeManager::ParseData(std::string line)
 	for (int i = 0; i < index; i++){
 		if (SectionMap.find(Arg[i]) != SectionMap.end())
 		{
-			CodeLine.Arg[i].Type = OpDataType::ImmediateData;
+			CodeLine.Arg[i].Type = OT_ImmediateData;
 			CodeLine.Arg[i].Data = SectionMap[Arg[i]];
 		}
 		else if (MapRegister.find(Arg[i]) != MapRegister.end())
 		{
-			CodeLine.Arg[i].Type = OpDataType::Register;
+			CodeLine.Arg[i].Type = OT_Register;
 			CodeLine.Arg[i].Data = MapRegister[Arg[i]];
 		}
 		else if (Arg[i].data()[0] == '#')
 		{
-			CodeLine.Arg[i].Type = OpDataType::DataPointer;
+			CodeLine.Arg[i].Type = OT_DataPointer;
 			Arg[i] = Arg[i].substr(1, Arg[i].size());
 			CodeLine.Arg[i].Data = atoi(Arg[i].data());
 		}
 		else
 		{
-			CodeLine.Arg[i].Type = OpDataType::ImmediateData;
+			CodeLine.Arg[i].Type = OT_ImmediateData;
 			CodeLine.Arg[i].Data = atoi(Arg[i].data());
 		}
 	}
@@ -188,7 +188,7 @@ unsigned int CodeManager::Add(OperateLine code)
 OperateLine CodeManager::Get(unsigned int Addr)
 {
 	if (Addr >= CodeSection.size())
-		throw VMExpection(ExpectionCode::UnexpectionCode, "未知代码地址");
+		throw VMExpection(EC_UnexpectionCode, "未知代码地址");
 	return CodeSection[Addr];
 }
 
