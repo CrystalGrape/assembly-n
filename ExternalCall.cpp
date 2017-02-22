@@ -30,7 +30,7 @@ void ExternalCall::EntrySection(std::string dllName)
 #if WINDOWS
 	hDllLib = LoadLibrary(dllName.data());
 #elif LINUX
-	hDllLib = dlopen(path, RTLD_LAZY);
+	hDllLib = dlopen(dllName.data(), RTLD_LAZY);
 #endif
 	if (!hDllLib)
 		throw VMExpection(EC_EntryExternalError);
