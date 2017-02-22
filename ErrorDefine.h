@@ -1,6 +1,10 @@
 #pragma once
 #include <iostream>
 #include <sstream>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 enum ExpectionCode
 {
 	EC_Exit = 0,
