@@ -336,6 +336,7 @@ void VirtualMachine::do_strb(OpData args[3])
 	odata |= Data;
 	Set(args[1].Data, odata);
 }
+
 void VirtualMachine::do_ldrb(OpData args[3])
 {
 #ifdef RECORDTIME
