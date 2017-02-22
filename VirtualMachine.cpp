@@ -11,28 +11,28 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	}
 	Memory = new MemoryManager(MaxMemorySize);
 	Operators.resize(100);
-	Operators[OpCode::MOV] = &VirtualMachine::do_move;
-	Operators[OpCode::STR] = &VirtualMachine::do_str;
-	Operators[OpCode::LDR] = &VirtualMachine::do_ldr;
-	Operators[OpCode::PUSH] = &VirtualMachine::do_push;
-	Operators[OpCode::POP] = &VirtualMachine::do_pop;
-	Operators[OpCode::JMP] = &VirtualMachine::do_jmp;
-	Operators[OpCode::CJMP] = &VirtualMachine::do_cjmp;
-	Operators[OpCode::BJMP] = &VirtualMachine::do_bjmp;
-	Operators[OpCode::RET] = &VirtualMachine::do_ret;
-	Operators[OpCode::END] = &VirtualMachine::do_end;
-	Operators[OpCode::ADD] = &VirtualMachine::do_add;
-	Operators[OpCode::SUB] = &VirtualMachine::do_sub;
-	Operators[OpCode::MUL] = &VirtualMachine::do_mul;
-	Operators[OpCode::GT] = &VirtualMachine::do_gt;
-	Operators[OpCode::GTE] = &VirtualMachine::do_gte;
-	Operators[OpCode::LT] = &VirtualMachine::do_lt;
-	Operators[OpCode::LTE] = &VirtualMachine::do_lte;
-	Operators[OpCode::ENTRY] = &VirtualMachine::do_entry;
-	Operators[OpCode::CALL] = &VirtualMachine::do_call;
-	Operators[OpCode::EXIT] = &VirtualMachine::do_exit;
-	Operators[OpCode::STRB] = &VirtualMachine::do_strb;
-	Operators[OpCode::LDRB] = &VirtualMachine::do_ldrb;
+	Operators[OC_MOV] = &VirtualMachine::do_move;
+	Operators[OC_STR] = &VirtualMachine::do_str;
+	Operators[OC_LDR] = &VirtualMachine::do_ldr;
+	Operators[OC_PUSH] = &VirtualMachine::do_push;
+	Operators[OC_POP] = &VirtualMachine::do_pop;
+	Operators[OC_JMP] = &VirtualMachine::do_jmp;
+	Operators[OC_CJMP] = &VirtualMachine::do_cjmp;
+	Operators[OC_BJMP] = &VirtualMachine::do_bjmp;
+	Operators[OC_RET] = &VirtualMachine::do_ret;
+	Operators[OC_END] = &VirtualMachine::do_end;
+	Operators[OC_ADD] = &VirtualMachine::do_add;
+	Operators[OC_SUB] = &VirtualMachine::do_sub;
+	Operators[OC_MUL] = &VirtualMachine::do_mul;
+	Operators[OC_GT] = &VirtualMachine::do_gt;
+	Operators[OC_GTE] = &VirtualMachine::do_gte;
+	Operators[OC_LT] = &VirtualMachine::do_lt;
+	Operators[OC_LTE] = &VirtualMachine::do_lte;
+	Operators[OC_ENTRY] = &VirtualMachine::do_entry;
+	Operators[OC_CALL] = &VirtualMachine::do_call;
+	Operators[OC_EXIT] = &VirtualMachine::do_exit;
+	Operators[OC_STRB] = &VirtualMachine::do_strb;
+	Operators[OC_LDRB] = &VirtualMachine::do_ldrb;
 	ExternalCall::GetInstance()->SetRunTime(this);
 }
 
@@ -44,7 +44,7 @@ VirtualMachine::~VirtualMachine()
 unsigned int VirtualMachine::Get(unsigned int Addr)
 {
 	if (Addr > RegisterMaxAddr) {
-		throw VMExpection(ExpectionCode::OutOfMemory, Addr);
+		throw VMExpection(EC_OutOfMemory, Addr);
 	}
 
 	if (Addr >= RegisterBaseAddr) {
@@ -58,7 +58,7 @@ unsigned int VirtualMachine::Get(unsigned int Addr)
 void VirtualMachine::Set(unsigned int Addr, unsigned int Value)
 {
 	if (Addr > RegisterMaxAddr) {
-		throw VMExpection(ExpectionCode::OutOfMemory, Addr);
+		throw VMExpection(EC_OutOfMemory, Addr);
 	}
 
 	if (Addr >= RegisterBaseAddr) {
@@ -95,7 +95,7 @@ void VirtualMachine::LoadModule(std::vector<std::string> &OriginalCode, string m
 
 	ifstream srcfile(modulePath);
 	if (!srcfile.is_open()){
-		throw VMExpection(ModuleNotExist, moduleName);
+		throw VMExpection(EC_ModuleNotExist, moduleName);
 	}
 	char line[8096];
 	while (!srcfile.eof()){

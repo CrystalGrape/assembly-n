@@ -6,36 +6,36 @@
 //指令
 enum OpCode
 {
-	MOV = 0,
-	STR,
-	LDR,
-	PUSH,
-	POP,
-	JMP,		//无条件跳转
-	CJMP,		//判断是否溢出跳转
-	BJMP,		//带返回跳转
-	RET,		//返回
-	END,		//程序退出
-	ADD,		//加			
-	SUB,		//减法
-	MUL,		//乘法
-	GT,			//大于
-	GTE,		//大于等于
-	LT,			//小于
-	LTE,		//小于等于
-	ENTRY,		//进入动态库
-	CALL,		//调用函数
-	EXIT,		//退出动态库
-	STRB,		//存储1byte数据到内存
-	LDRB,		//加载1byte的数据到寄存器
+	OC_MOV = 0,
+	OC_STR,
+	OC_LDR,
+	OC_PUSH,
+	OC_POP,
+	OC_JMP,		//无条件跳转
+	OC_CJMP,		//判断是否溢出跳转
+	OC_BJMP,		//带返回跳转
+	OC_RET,		//返回
+	OC_END,		//程序退出
+	OC_ADD,		//加			
+	OC_SUB,		//减法
+	OC_MUL,		//乘法
+	OC_GT,			//大于
+	OC_GTE,		//大于等于
+	OC_LT,			//小于
+	OC_LTE,		//小于等于
+	OC_ENTRY,		//进入动态库
+	OC_CALL,		//调用函数
+	OC_EXIT,		//退出动态库
+	OC_STRB,		//存储1byte数据到内存
+	OC_LDRB,		//加载1byte的数据到寄存器
 };
 
 //操作数据类型
 enum OpDataType
 {
-	ImmediateData,		//立即数
-	DataPointer,		//指针
-	Register,			//寄存器
+	OT_ImmediateData,		//立即数
+	OT_DataPointer,		//指针
+	OT_Register,			//寄存器
 };
 
 #pragma pack(1)
@@ -57,8 +57,8 @@ class CodeManager
 {
 public:
 	CodeManager();
-	std::string& CodeManager::Trim(std::string &s);
-	bool Equals(std::string first, std::string next, int len);
+	static std::string& CodeManager::Trim(std::string &s);
+	static bool Equals(std::string first, std::string next, int len);
 	std::vector<std::string> PreCompile(std::vector<std::string> Codes);
 	OperateLine ParseData(std::string line);
 	//返回当前地址
