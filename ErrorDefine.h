@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
 #include <sstream>
-enum ExpectionCode
+typedef enum 
 {
-	Exit,
+	Exit = 0,
 	ModuleNotExist,
 	CodeError,
 	OutOfMemory,
@@ -12,7 +12,7 @@ enum ExpectionCode
 	ArgsError,
 	EntryExternalError,
 	CallExternalError,
-};
+}ExpectionCode;
 class VMExpection
 {
 public:
