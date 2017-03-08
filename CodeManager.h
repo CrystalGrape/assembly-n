@@ -28,6 +28,8 @@ enum OpCode
 	OC_EXIT,		//退出动态库
 	OC_STRB,		//存储1byte数据到内存
 	OC_LDRB,		//加载1byte的数据到寄存器
+	OC_ALLOC,		//在栈区分配内存
+	OC_FREE			//释放栈区内存
 };
 
 //操作数据类型

@@ -27,6 +27,8 @@ CodeManager::CodeManager()
 	MapCode["exit"] = OC_EXIT;
 	MapCode["strb"] = OC_STRB;
 	MapCode["ldrb"] = OC_LDRB;
+	MapCode["alloc"] = OC_ALLOC;
+	MapCode["free"] = OC_FREE;
 
 	MapRegister["r0"]	=	0x56000000;
 	MapRegister["r1"]	=	0x56000001;

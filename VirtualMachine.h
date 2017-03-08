@@ -1,6 +1,7 @@
 #pragma once
 #include "MemoryManager.h"
 #include "CodeManager.h"
+#include "Alloc.h"
 typedef unsigned int Int32;
 #define RegisterBaseAddr 0x56000000
 #define RegisterMaxAddr 0x56000014
@@ -43,6 +44,8 @@ private:
 	void do_exit(OpData args[3]);
 	void do_strb(OpData args[3]);
 	void do_ldrb(OpData args[3]);
+	void do_alloc(OpData args[3]);
+	void do_free(OpData args[3]);
 private:
 	//0x00000000-0x56000000
 	MemoryManager *Memory;
@@ -63,6 +66,7 @@ private:
 #define cpsr R[14]
 	typedef void (VirtualMachine::*OperatorFunction)(OpData args[3]);
 	std::vector<OperatorFunction> Operators;
+	Alloc *StackMemory;
 };
 
 

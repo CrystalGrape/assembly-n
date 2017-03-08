@@ -322,18 +322,31 @@ void VirtualMachine::do_strb(OpData args[3])
 #endif
 	if (args[0].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第一个参数必须是寄存器");
-	if (args[1].Type!=OT_DataPointer)
-		throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址");
-	if (args[2].Type!=OT_ImmediateData)
-		throw VMExpection(EC_ArgsError, "strb指令第三个参数必须是立即数");
-	if (args[2].Data >= 4 || args[2].Data < 0)
-		throw VMExpection(EC_ArgsError, "strb指令第三个参数超过范围");
+	if (args[1].Type != OT_DataPointer&&args[1].Type != OT_Register);
+	throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址或寄存器");
+	if (args[2].Type != OT_ImmediateData&&args[1].Type != OT_Register)
+		throw VMExpection(EC_ArgsError, "strb指令第三个参数必须是立即数或寄存器");
+	/*if (args[2].Data >= 4 || args[2].Data < 0)
+		throw VMExpection(EC_ArgsError, "strb指令第三个参数超过范围");*/
 	unsigned int Data = Get(args[0].Data);
 	unsigned int odata = Get(args[1].Data);
-	unsigned int tmp = ~(0xff << (args[2].Data * 8));
+	unsigned int tmp;
+	if (args[2].Type == OT_ImmediateData) {
+		tmp = ~(0xff << (args[2].Data * 8));
+		odata &= tmp;
+		Data = Data << (args[2].Data * 8);
+		odata |= Data;
+	}
+	else {
+		tmp = ~(0xff << (Get(args[2].Data) * 8));
+		odata &= tmp;
+		Data = Data << (Get(args[2].Data) * 8);
+		odata |= Data;
+	}
+	/*unsigned int tmp = ~(0xff << (args[2].Data * 8));
 	odata &= tmp;
 	Data = Data << (args[2].Data * 8);
-	odata |= Data;
+	odata |= Data;*/
 	Set(args[1].Data, odata);
 }
 
@@ -344,15 +357,54 @@ void VirtualMachine::do_ldrb(OpData args[3])
 #endif
 	if (args[0].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第一个参数必须是寄存器");
-	if (args[1].Type != OT_DataPointer)
-		throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址");
-	if (args[2].Type != OT_ImmediateData)
-		throw VMExpection(EC_ArgsError, "strb指令第三个参数必须是立即数");
-	if (args[2].Data >= 4 || args[2].Data < 0)
-		throw VMExpection(EC_ArgsError, "strb指令第三个参数超过范围");
+	if (args[1].Type != OT_DataPointer&&args[1].Type != OT_Register);
+		throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址或寄存器");
+	if (args[2].Type != OT_ImmediateData&&args[1].Type != OT_Register)
+		throw VMExpection(EC_ArgsError, "strb指令第三个参数必须是立即数或寄存器");
+	/*if (args[2].Data >= 4 || args[2].Data < 0)
+		throw VMExpection(EC_ArgsError, "strb指令第三个参数超过范围");*/
 	unsigned int odata = Get(args[1].Data);
-	unsigned int tmp = 0xff << (args[2].Data * 8);
-	odata &= tmp;
-	unsigned int Data = odata >> (args[2].Data * 8);
+	//unsigned int tmp = 0xff << (args[2].Data * 8);
+	unsigned int tmp;
+	unsigned int Data;
+	if (args[2].Type == OT_ImmediateData) {
+		tmp = 0xff << (args[2].Data * 8);
+		odata &= tmp;
+		Data = odata >> (args[2].Data * 8);
+	}
+	else {
+		tmp = 0xff << (Get(args[2].Data) * 8);
+		odata &= tmp;
+		Data = odata >> (Get(args[2].Data) * 8);
+	}
 	Set(args[0].Data, Data);
+}
+
+void VirtualMachine::do_alloc(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("alloc");
+#endif
+	if (args[0].Type != OT_Register)
+		throw VMExpection(EC_ArgsError, "alloc指令第一个参数必须是寄存器");
+	if (args[1].Type != OT_Register)
+		throw VMExpection(EC_ArgsError, "alloc指令第二个参数必须是寄存器");
+	if (args[2].Type != OT_ImmediateData)
+		throw VMExpection(EC_ArgsError, "alloc指令第三个参数必须是立即数");
+	MemoryIdentify mid = StackMemory->Malloc(args[2].Data);
+	Set(args[0].Data, mid.BaseAddr);
+	Set(args[1].Data, mid.Offset);
+}
+
+void VirtualMachine::do_free(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("free");
+#endif
+	if (args[0].Type != OT_Register)
+		throw VMExpection(EC_ArgsError, "free指令第一个参数必须是寄存器");
+	if (args[1].Type != OT_Register)
+		throw VMExpection(EC_ArgsError, "free指令第二个参数必须是寄存器");
+	MemoryIdentify mid(Get(args[0].Data), Get(args[1].Data));
+	StackMemory->Free(mid);
 }
