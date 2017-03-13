@@ -151,7 +151,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Alloc.h" />
     <ClInclude Include="CodeManager.h" />
     <ClInclude Include="ErrorDefine.h" />
     <ClInclude Include="ExternalCall.h" />
@@ -160,7 +159,6 @@
     <ClInclude Include="VirtualMachine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Alloc.cpp" />
     <ClCompile Include="CodeManager.cpp" />
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="ExternalCall.cpp" />

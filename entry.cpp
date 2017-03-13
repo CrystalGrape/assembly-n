@@ -1,6 +1,5 @@
 #include <iostream> 
 #include "VirtualMachine.h"
-#include "Alloc.h"
 using namespace std;
 
 int main(int argc, char *argv[])
