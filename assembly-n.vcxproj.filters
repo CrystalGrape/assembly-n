@@ -73,5 +73,6 @@
     <None Include="demo\lib\print.asn">
       <Filter>Demo\Lib</Filter>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

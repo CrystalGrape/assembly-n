@@ -171,6 +171,7 @@
     <None Include="demo\lib\math.asn" />
     <None Include="demo\lib\print.asn" />
     <None Include="demo\main.asn" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
