@@ -301,7 +301,7 @@ void VirtualMachine::do_call(OpData args[3])
 	RecordTime time("call");
 #endif
 	if (args[0].Type != OT_Register)
-		throw VMExpection(EC_ArgsError, "entry指令第一个参数必须是寄存器");
+		throw VMExpection(EC_ArgsError, "call指令第一个参数必须是寄存器");
 	ExternalCall *ec = ExternalCall::GetInstance();
 	Int32 Addr = Get(args[0].Data);
 	ec->CallFunction((char *)this->GetPhysicalAddr(Addr));
