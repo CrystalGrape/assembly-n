@@ -11,6 +11,8 @@
 2. `使用vs2015打开工程(如果是其他版本的vs，可以在工程属性里修改平台工具集)。`
 3. `编译。`
 4. `使用assembly-n [namespace]运行asn。`
+
+
 ## 2、在Linux平台上使用 ##
 1. `git clone https://github.com/CrystalGrape/assembly-n`
 2. `编译ExternalCall.cpp:g++ -c ExternalCall.cpp -DLINUX`
