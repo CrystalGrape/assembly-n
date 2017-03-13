@@ -16,6 +16,8 @@
 2. `编译ExternalCall.cpp:g++ -c ExternalCall.cpp -DLINUX`
 3. `make`
 4. `使用assembly-n [namespace]运行asn。`
+
+
 # 二、使用asn汇编 #
 
 ----------
