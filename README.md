@@ -1,6 +1,8 @@
 # assembly-n 使用向导 #
 #简介：
 >assembly-n是基于C++的虚拟机，在虚拟机上可以直接运行assembly-n汇编语言，未来assembly-n将作为program-n的中间语言。
+
+
 # 一、使用assembly-n #
 
 ----------
@@ -10,7 +12,7 @@
 3. `编译。`
 4. `使用assembly-n [namespace]运行asn。`
 ## 2、在Linux平台上使用 ##
-1. `gitclone https://github.com/CrystalGrape/assembly-n`
+1. `git clone https://github.com/CrystalGrape/assembly-n`
 2. `编译ExternalCall.cpp:g++ -c ExternalCall.cpp -DLINUX`
 3. `make`
 4. `使用assembly-n [namespace]运行asn。`
