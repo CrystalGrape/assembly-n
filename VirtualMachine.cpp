@@ -33,7 +33,7 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	Operators[OC_EXIT] = &VirtualMachine::do_exit;
 	Operators[OC_STRB] = &VirtualMachine::do_strb;
 	Operators[OC_LDRB] = &VirtualMachine::do_ldrb;
-	Operators[OC_ALLOC] = &VirtualMachine::do_alloc;
+	/*Operators[OC_ALLOC] = &VirtualMachine::do_alloc;*/
 	ExternalCall::GetInstance()->SetRunTime(this);
 	StackMemory = new Alloc(100, 512);
 }

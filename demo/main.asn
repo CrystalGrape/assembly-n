@@ -3,8 +3,6 @@ import lib.math
 import lib.echo
 import lib.print
 section main:
-	;alloc测试
-	alloc r0,r1,10
 	;将Hello写入内存 
 	mov r0,1819043176
 	str r0,1001
@@ -13,5 +11,5 @@ section main:
 	mov r0,1001
 	push r0
 	;调用print函数
-	bjmp print
+	bjmp echo
 	end

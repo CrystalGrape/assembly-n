@@ -322,8 +322,8 @@ void VirtualMachine::do_strb(OpData args[3])
 #endif
 	if (args[0].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第一个参数必须是寄存器");
-	if (args[1].Type != OT_DataPointer&&args[1].Type != OT_Register);
-	throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址或寄存器");
+	if (args[1].Type != OT_DataPointer&&args[1].Type != OT_Register)
+		throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址或寄存器");
 	if (args[2].Type != OT_ImmediateData&&args[1].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第三个参数必须是立即数或寄存器");
 	/*if (args[2].Data >= 4 || args[2].Data < 0)
@@ -357,7 +357,7 @@ void VirtualMachine::do_ldrb(OpData args[3])
 #endif
 	if (args[0].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第一个参数必须是寄存器");
-	if (args[1].Type != OT_DataPointer&&args[1].Type != OT_Register);
+	if (args[1].Type != OT_DataPointer&&args[1].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址或寄存器");
 	if (args[2].Type != OT_ImmediateData&&args[1].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第三个参数必须是立即数或寄存器");
@@ -380,31 +380,31 @@ void VirtualMachine::do_ldrb(OpData args[3])
 	Set(args[0].Data, Data);
 }
 
-void VirtualMachine::do_alloc(OpData args[3])
-{
-#ifdef RECORDTIME
-	RecordTime time("alloc");
-#endif
-	if (args[0].Type != OT_Register)
-		throw VMExpection(EC_ArgsError, "alloc指令第一个参数必须是寄存器");
-	if (args[1].Type != OT_Register)
-		throw VMExpection(EC_ArgsError, "alloc指令第二个参数必须是寄存器");
-	if (args[2].Type != OT_ImmediateData)
-		throw VMExpection(EC_ArgsError, "alloc指令第三个参数必须是立即数");
-	MemoryIdentify mid = StackMemory->Malloc(args[2].Data);
-	Set(args[0].Data, mid.BaseAddr);
-	Set(args[1].Data, mid.Offset);
-}
-
-void VirtualMachine::do_free(OpData args[3])
-{
-#ifdef RECORDTIME
-	RecordTime time("free");
-#endif
-	if (args[0].Type != OT_Register)
-		throw VMExpection(EC_ArgsError, "free指令第一个参数必须是寄存器");
-	if (args[1].Type != OT_Register)
-		throw VMExpection(EC_ArgsError, "free指令第二个参数必须是寄存器");
-	MemoryIdentify mid(Get(args[0].Data), Get(args[1].Data));
-	StackMemory->Free(mid);
-}
+//void VirtualMachine::do_alloc(OpData args[3])
+//{
+//#ifdef RECORDTIME
+//	RecordTime time("alloc");
+//#endif
+//	if (args[0].Type != OT_Register)
+//		throw VMExpection(EC_ArgsError, "alloc指令第一个参数必须是寄存器");
+//	if (args[1].Type != OT_Register)
+//		throw VMExpection(EC_ArgsError, "alloc指令第二个参数必须是寄存器");
+//	if (args[2].Type != OT_ImmediateData)
+//		throw VMExpection(EC_ArgsError, "alloc指令第三个参数必须是立即数");
+//	MemoryIdentify mid = StackMemory->Malloc(args[2].Data);
+//	Set(args[0].Data, mid.BaseAddr);
+//	Set(args[1].Data, mid.Offset);
+//}
+//
+//void VirtualMachine::do_free(OpData args[3])
+//{
+//#ifdef RECORDTIME
+//	RecordTime time("free");
+//#endif
+//	if (args[0].Type != OT_Register)
+//		throw VMExpection(EC_ArgsError, "free指令第一个参数必须是寄存器");
+//	if (args[1].Type != OT_Register)
+//		throw VMExpection(EC_ArgsError, "free指令第二个参数必须是寄存器");
+//	MemoryIdentify mid(Get(args[0].Data), Get(args[1].Data));
+//	StackMemory->Free(mid);
+//}
