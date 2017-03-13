@@ -10,7 +10,7 @@
 3. `编译。`
 4. `使用assembly-n [namespace]运行asn。`
 ## 2、在Linux平台上使用 ##
-1. `gitclone https://github.com/CrystalGrape/assembly-n`
+1. `git clone https://github.com/CrystalGrape/assembly-n`
 2. `编译ExternalCall.cpp:g++ -c ExternalCall.cpp -DLINUX`
 3. `make`
 4. `使用assembly-n [namespace]运行asn。`
