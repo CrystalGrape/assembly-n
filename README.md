@@ -193,7 +193,7 @@
 ## 4、使用指令
 >首先约定：rn表示任意寄存器，#ptr表示指针，data表示立即数，sectionFlag是段标志。
 
-
+[cjmp指令](#6-jmp指令)
 ### (1) mov指令
 	mov rn,[rn,#ptr,data]
 	将参数二表示的数据写入参数一。
