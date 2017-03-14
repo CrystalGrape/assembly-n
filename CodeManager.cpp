@@ -40,16 +40,16 @@ CodeManager::CodeManager()
 	MapRegister["r7"]	=	0x56000007;
 	MapRegister["r8"]	=	0x56000008;
 	MapRegister["r9"]	=	0x56000009;
-	MapRegister["r10"]	=	0x56000010;
-	MapRegister["r11"]	=	0x56000011;
-	MapRegister["r12"]	=	0x56000012;
-	MapRegister["r13"]	=	0x56000013;
-	MapRegister["r14"]	=	0x56000014;
-	MapRegister["pc"]	=	0x56000010;
-	MapRegister["lr"]	=	0x56000011;
-	MapRegister["sp"]	=	0x56000012;
-	MapRegister["dptr"]	=	0x56000013;
-	MapRegister["cpsr"]	=	0x56000014;
+	MapRegister["r10"]	=	0x5600000A;
+	MapRegister["r11"]	=	0x5600000B;
+	MapRegister["r12"]	=	0x5600000C;
+	MapRegister["r13"]	=	0x5600000D;
+	MapRegister["r14"]	=	0x5600000E;
+	MapRegister["pc"]	=	0x5600000A;
+	MapRegister["lr"]	=	0x5600000B;
+	MapRegister["sp"]	=	0x5600000C;
+	MapRegister["dptr"]	=	0x5600000D;
+	MapRegister["cpsr"]	=	0x5600000E;
 }
 CodeManager::~CodeManager()
 {

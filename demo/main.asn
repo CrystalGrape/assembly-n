@@ -4,11 +4,14 @@ import lib.echo
 import lib.print
 section main:
 	;将Hello写入内存 
-	mov r0,1819043176
-	str r0,1001
-	mov r0,111
-	str r0,1002
-	mov r0,1001
+	;alloc local variable
+	mov r0,0
+	push r0
+	;set variable value
+	mov r0,1
+	sub r0,sp,r0
+	mov r1,97
+	str r1,r0
 	push r0
 	;调用print函数
 	bjmp echo
