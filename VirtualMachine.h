@@ -1,6 +1,7 @@
 #pragma once
 #include "MemoryManager.h"
 #include "CodeManager.h"
+#include "CpuExpection.h"
 typedef unsigned int Int32;
 #define RegisterBaseAddr 0x56000000
 #define RegisterMaxAddr 0x56000014
@@ -43,8 +44,11 @@ private:
 	void do_exit(OpData args[3]);
 	void do_strb(OpData args[3]);
 	void do_ldrb(OpData args[3]);
-	/*void do_alloc(OpData args[3]);
-	void do_free(OpData args[3]);*/
+	void do_swi(OpData args[3]);
+private:
+	//异常处理模块
+	bool AllowRun(OpCode code);
+	RunModCode CurrentRunMode();
 private:
 	//0x00000000-0x56000000
 	MemoryManager *Memory;
@@ -67,4 +71,15 @@ private:
 	std::vector<OperatorFunction> Operators;
 };
 
+/*
+cpsr 标志位 
+0：溢出标志
+1，2：运行模式
+[
+	00:Usr
+	01:SVC
+	10:SYS
+	11:IRQ
+]
+*/
 

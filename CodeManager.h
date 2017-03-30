@@ -28,13 +28,14 @@ enum OpCode
 	OC_EXIT,		//退出动态库
 	OC_STRB,		//存储1byte数据到内存
 	OC_LDRB,		//加载1byte的数据到寄存器
+	OC_SWI,			//软中断指令
 };
 
 //操作数据类型
 enum OpDataType
 {
 	OT_ImmediateData,		//立即数
-	OT_DataPointer,		//指针
+	OT_DataPointer,			//指针
 	OT_Register,			//寄存器
 };
 
