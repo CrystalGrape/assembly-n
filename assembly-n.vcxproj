@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CodeManager.h" />
+    <ClInclude Include="CpuExpection.h" />
     <ClInclude Include="ErrorDefine.h" />
     <ClInclude Include="ExternalCall.h" />
     <ClInclude Include="MemoryManager.h" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CodeManager.cpp" />
+    <ClCompile Include="CpuExpectionHandler.cpp" />
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="ExternalCall.cpp" />
     <ClCompile Include="MemoryManager.cpp" />

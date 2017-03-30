@@ -33,6 +33,7 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	Operators[OC_EXIT] = &VirtualMachine::do_exit;
 	Operators[OC_STRB] = &VirtualMachine::do_strb;
 	Operators[OC_LDRB] = &VirtualMachine::do_ldrb;
+	Operators[OC_SWI] = &VirtualMachine::do_swi;
 	ExternalCall::GetInstance()->SetRunTime(this);
 }
 
@@ -148,7 +149,14 @@ void VirtualMachine::Run()
 		try
 		{
 			OperateLine code = Codes.Get(pc++);
-			(this->*Operators[code.Cmd])(code.Arg);
+			if (AllowRun(code.Cmd))
+			{
+				(this->*Operators[code.Cmd])(code.Arg);
+			}
+			else
+			{
+				//不允许运行，跳转到错误处理区域
+			}
 		}
 		catch (VMExpection e)
 		{

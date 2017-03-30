@@ -326,8 +326,6 @@ void VirtualMachine::do_strb(OpData args[3])
 		throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址或寄存器");
 	if (args[2].Type != OT_ImmediateData&&args[1].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第三个参数必须是立即数或寄存器");
-	/*if (args[2].Data >= 4 || args[2].Data < 0)
-		throw VMExpection(EC_ArgsError, "strb指令第三个参数超过范围");*/
 	unsigned int Data = Get(args[0].Data);
 	unsigned int odata = Get(args[1].Data);
 	unsigned int tmp;
@@ -343,10 +341,6 @@ void VirtualMachine::do_strb(OpData args[3])
 		Data = Data << (Get(args[2].Data) * 8);
 		odata |= Data;
 	}
-	/*unsigned int tmp = ~(0xff << (args[2].Data * 8));
-	odata &= tmp;
-	Data = Data << (args[2].Data * 8);
-	odata |= Data;*/
 	Set(args[1].Data, odata);
 }
 
@@ -361,10 +355,7 @@ void VirtualMachine::do_ldrb(OpData args[3])
 		throw VMExpection(EC_ArgsError, "strb指令第二个参数必须是地址或寄存器");
 	if (args[2].Type != OT_ImmediateData&&args[1].Type != OT_Register)
 		throw VMExpection(EC_ArgsError, "strb指令第三个参数必须是立即数或寄存器");
-	/*if (args[2].Data >= 4 || args[2].Data < 0)
-		throw VMExpection(EC_ArgsError, "strb指令第三个参数超过范围");*/
 	unsigned int odata = Get(args[1].Data);
-	//unsigned int tmp = 0xff << (args[2].Data * 8);
 	unsigned int tmp;
 	unsigned int Data;
 	if (args[2].Type == OT_ImmediateData) {
@@ -378,4 +369,13 @@ void VirtualMachine::do_ldrb(OpData args[3])
 		Data = odata >> (Get(args[2].Data) * 8);
 	}
 	Set(args[0].Data, Data);
+}
+
+//软中断指令
+void VirtualMachine::do_swi(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("swi");
+#endif
+
 }
