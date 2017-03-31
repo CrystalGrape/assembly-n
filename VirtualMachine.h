@@ -45,10 +45,12 @@ private:
 	void do_strb(OpData args[3]);
 	void do_ldrb(OpData args[3]);
 	void do_swi(OpData args[3]);
+	void do_swm(OpData args[3]);
 private:
 	//Òì³£´¦ÀíÄ£¿é
 	bool AllowRun(OpCode code);
 	RunModCode CurrentRunMode();
+	void SetRunMode(RunModCode mode);
 private:
 	//0x00000000-0x56000000
 	MemoryManager *Memory;
@@ -59,14 +61,16 @@ private:
 		R12=SP
 		R13=DPTR		//Ö¸Õë¼Ä´æÆ÷
 		R14=CPSR		//×´Ì¬¼Ä´æÆ÷
+		R15=SINO		//ÈíÖÐ¶ÏºÅ
 	*/
-	Int32 R[15];
+	Int32 R[16];
 	CodeManager Codes;
 #define pc R[10]
 #define lr R[11]
 #define sp R[12]
 #define dptr R[13]
 #define cpsr R[14]
+#define sino R[15]
 	typedef void (VirtualMachine::*OperatorFunction)(OpData args[3]);
 	std::vector<OperatorFunction> Operators;
 };

@@ -34,6 +34,7 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	Operators[OC_STRB] = &VirtualMachine::do_strb;
 	Operators[OC_LDRB] = &VirtualMachine::do_ldrb;
 	Operators[OC_SWI] = &VirtualMachine::do_swi;
+	Operators[OC_SWM] = &VirtualMachine::do_swm;
 	ExternalCall::GetInstance()->SetRunTime(this);
 }
 
@@ -156,6 +157,7 @@ void VirtualMachine::Run()
 			else
 			{
 				//不允许运行，跳转到错误处理区域
+				throw VMExpection(EC_InvalidOperator);
 			}
 		}
 		catch (VMExpection e)

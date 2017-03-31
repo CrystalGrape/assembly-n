@@ -17,6 +17,7 @@ enum ExpectionCode
 	EC_EntryExternalError,
 	EC_CallExternalError,
 	EC_AllocMemroyFailed,
+	EC_InvalidOperator
 };
 
 class VMExpection

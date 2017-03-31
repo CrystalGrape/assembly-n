@@ -29,6 +29,7 @@ enum OpCode
 	OC_STRB,		//存储1byte数据到内存
 	OC_LDRB,		//加载1byte的数据到寄存器
 	OC_SWI,			//软中断指令
+	OC_SWM,			//切换模式
 };
 
 //操作数据类型

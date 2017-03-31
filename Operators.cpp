@@ -377,5 +377,19 @@ void VirtualMachine::do_swi(OpData args[3])
 #ifdef RECORDTIME
 	RecordTime time("swi");
 #endif
+	lr = pc;
+	sino = args[0].Data;
+	pc = 1;		
+	SetRunMode(RMC_Supervisor);
+}
 
+//切换运行模式
+void VirtualMachine::do_swm(OpData args[3])
+{
+#ifdef RECORDTIME
+	RecordTime time("swm");
+#endif
+	if (args[0].Data > 2 || args[0].Data < 0)
+		throw VMExpection(EC_ArgsError, "swm指令第一个参数必须在0-3之间");
+	SetRunMode(RunModCode(args[0].Data));
 }

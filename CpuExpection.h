@@ -31,7 +31,7 @@ private:
 		OpCode BaseCode[] =
 		{
 			OC_MOV,OC_STR,OC_LDR,OC_PUSH,OC_POP,OC_JMP,OC_CJMP,OC_BJMP,OC_RET,OC_END,
-			OC_ADD,OC_SUB,OC_MUL,OC_GT,OC_GTE,OC_LT,OC_LTE,OC_STRB,OC_LDRB
+			OC_ADD,OC_SUB,OC_MUL,OC_GT,OC_GTE,OC_LT,OC_LTE,OC_STRB,OC_LDRB,OC_SWI
 		};
 
 		for (int i = 0; i < sizeof(BaseCode) / sizeof(OpCode); i++)
@@ -41,9 +41,12 @@ private:
 			SysPermission.push_back(BaseCode[i]);
 			IrqPermission.push_back(BaseCode[i]);
 		}
+		SvcPermission.push_back(OC_SWM);
+		SysPermission.push_back(OC_SWM);
 		SysPermission.push_back(OC_ENTRY);
 		SysPermission.push_back(OC_CALL);
 		SysPermission.push_back(OC_EXIT);
+		RunModeMap.resize(4);
 		RunModeMap[RMC_User] = UsrPermission;
 		RunModeMap[RMC_Supervisor] = SvcPermission;
 		RunModeMap[RMC_SYSTEM] = SysPermission;

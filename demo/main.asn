@@ -1,9 +1,24 @@
 jmp main
+jmp swi_handler
 import lib.math
 import lib.echo
 import lib.print
 section main:
-	;将Hello写入内存 
+	swi 1
+	mov r0,0
+	push r0
+	;set variable value
+	mov r0,1
+	sub r0,sp,r0
+	mov r1,97
+	str r1,r0
+	push r0
+	bjmp echo
+	end
+section swi_handler:
+	;切换到系统模式
+	swm 2
+	push lr
 	;alloc local variable
 	mov r0,0
 	push r0
@@ -13,6 +28,7 @@ section main:
 	mov r1,97
 	str r1,r0
 	push r0
-	;调用print函数
 	bjmp echo
-	end
+	pop r0
+	pop lr
+	ret

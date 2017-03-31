@@ -28,6 +28,7 @@ CodeManager::CodeManager()
 	MapCode["strb"] = OC_STRB;
 	MapCode["ldrb"] = OC_LDRB;
 	MapCode["swi"] = OC_SWI;
+	MapCode["swm"] = OC_SWM;
 	/*MapCode["alloc"] = OC_ALLOC;
 	MapCode["free"] = OC_FREE;*/
 
