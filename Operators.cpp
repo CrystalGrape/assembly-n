@@ -1,5 +1,4 @@
 #include "VirtualMachine.h"
-#include "ExternalCall.h"
 ///操作码函数
 void VirtualMachine::do_move(OpData args[3])
 {
@@ -284,36 +283,36 @@ void VirtualMachine::do_lte(OpData args[3])
 	}
 }
 
-void VirtualMachine::do_entry(OpData args[3])
-{
-#ifdef RECORDTIME
-	RecordTime time("entry");
-#endif
-	if (args[0].Type != OT_Register)
-		throw VMExpection(EC_ArgsError, "entry指令第一个参数必须是寄存器");
-	ExternalCall *ec = ExternalCall::GetInstance();
-	Int32 Addr=Get(args[0].Data);
-	ec->EntrySection((char *)this->GetPhysicalAddr(Addr));
-}
-void VirtualMachine::do_call(OpData args[3])
-{
-#ifdef RECORDTIME
-	RecordTime time("call");
-#endif
-	if (args[0].Type != OT_Register)
-		throw VMExpection(EC_ArgsError, "call指令第一个参数必须是寄存器");
-	ExternalCall *ec = ExternalCall::GetInstance();
-	Int32 Addr = Get(args[0].Data);
-	ec->CallFunction((char *)this->GetPhysicalAddr(Addr));
-}
-void VirtualMachine::do_exit(OpData args[3])
-{
-#ifdef RECORDTIME
-	RecordTime time("exit");
-#endif
-	ExternalCall *ec = ExternalCall::GetInstance();
-	ec->ExitSection();
-}
+//void VirtualMachine::do_entry(OpData args[3])
+//{
+//#ifdef RECORDTIME
+//	RecordTime time("entry");
+//#endif
+//	if (args[0].Type != OT_Register)
+//		throw VMExpection(EC_ArgsError, "entry指令第一个参数必须是寄存器");
+//	ExternalCall *ec = ExternalCall::GetInstance();
+//	Int32 Addr=Get(args[0].Data);
+//	ec->EntrySection((char *)this->GetPhysicalAddr(Addr));
+//}
+//void VirtualMachine::do_call(OpData args[3])
+//{
+//#ifdef RECORDTIME
+//	RecordTime time("call");
+//#endif
+//	if (args[0].Type != OT_Register)
+//		throw VMExpection(EC_ArgsError, "call指令第一个参数必须是寄存器");
+//	ExternalCall *ec = ExternalCall::GetInstance();
+//	Int32 Addr = Get(args[0].Data);
+//	ec->CallFunction((char *)this->GetPhysicalAddr(Addr));
+//}
+//void VirtualMachine::do_exit(OpData args[3])
+//{
+//#ifdef RECORDTIME
+//	RecordTime time("exit");
+//#endif
+//	ExternalCall *ec = ExternalCall::GetInstance();
+//	ec->ExitSection();
+//}
 
 void VirtualMachine::do_strb(OpData args[3])
 {

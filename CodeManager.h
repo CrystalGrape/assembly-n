@@ -23,9 +23,6 @@ enum OpCode
 	OC_GTE,		//大于等于
 	OC_LT,			//小于
 	OC_LTE,		//小于等于
-	OC_ENTRY,		//进入动态库
-	OC_CALL,		//调用函数
-	OC_EXIT,		//退出动态库
 	OC_STRB,		//存储1byte数据到内存
 	OC_LDRB,		//加载1byte的数据到寄存器
 };

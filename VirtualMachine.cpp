@@ -28,9 +28,6 @@ VirtualMachine::VirtualMachine(int MaxMemorySize)
 	Operators[OC_GTE] = &VirtualMachine::do_gte;
 	Operators[OC_LT] = &VirtualMachine::do_lt;
 	Operators[OC_LTE] = &VirtualMachine::do_lte;
-	Operators[OC_ENTRY] = &VirtualMachine::do_entry;
-	Operators[OC_CALL] = &VirtualMachine::do_call;
-	Operators[OC_EXIT] = &VirtualMachine::do_exit;
 	Operators[OC_STRB] = &VirtualMachine::do_strb;
 	Operators[OC_LDRB] = &VirtualMachine::do_ldrb;
 	ExternalCall::GetInstance()->SetRunTime(this);

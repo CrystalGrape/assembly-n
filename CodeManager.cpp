@@ -22,9 +22,6 @@ CodeManager::CodeManager()
 	MapCode["gte"] = OC_GTE;
 	MapCode["lt"] = OC_LT;
 	MapCode["lte"] = OC_LTE;
-	MapCode["entry"] = OC_ENTRY;
-	MapCode["call"] = OC_CALL;
-	MapCode["exit"] = OC_EXIT;
 	MapCode["strb"] = OC_STRB;
 	MapCode["ldrb"] = OC_LDRB;
 	/*MapCode["alloc"] = OC_ALLOC;

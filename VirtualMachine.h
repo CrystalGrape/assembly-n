@@ -38,9 +38,6 @@ private:
 	void do_gte(OpData args[3]);
 	void do_lt(OpData args[3]);
 	void do_lte(OpData args[3]);
-	void do_entry(OpData args[3]);
-	void do_call(OpData args[3]);
-	void do_exit(OpData args[3]);
 	void do_strb(OpData args[3]);
 	void do_ldrb(OpData args[3]);
 	/*void do_alloc(OpData args[3]);
